@@ -45,7 +45,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#f7f9fa] pb-12">
       <div className="max-w-7xl mx-auto px-4 pt-8">
-        <h1 className="text-2xl font-bold mb-6 text-blue-700">志愿者网络</h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold text-blue-700">志愿者网络</h1>
+          <a
+            href="/award-badge"
+            className="inline-block px-5 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-400 text-white font-semibold shadow hover:from-blue-600 hover:to-blue-500 transition"
+          >
+            勋章授予
+          </a>
+        </div>
         <input
           className="mb-8 px-4 py-2 border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-200 w-full max-w-xl"
           placeholder="搜索志愿者、ID或自我介绍..."
