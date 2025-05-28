@@ -27,6 +27,13 @@ function Toast({ show, message }: { show: boolean; message: string }) {
   ) : null;
 }
 
+type AwardRecord = {
+  user: { id: number; name: string; avatar: string };
+  badge: { id: number; name: string; image: string };
+  reason: string;
+  time: string;
+};
+
 export default function AwardBadgePage() {
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [selectedBadges, setSelectedBadges] = useState<number[]>([]);
@@ -37,7 +44,7 @@ export default function AwardBadgePage() {
   const [uploadName, setUploadName] = useState("");
   const [uploadImage, setUploadImage] = useState<File | null>(null);
   const [uploadPreview, setUploadPreview] = useState<string | null>(null);
-  const [records, setRecords] = useState<any[]>([]);
+  const [records, setRecords] = useState<AwardRecord[]>([]);
   const [showToast, setShowToast] = useState(false);
   const [toastMsg, setToastMsg] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -94,12 +101,12 @@ export default function AwardBadgePage() {
   const handleAward = () => {
     if (!selectedUsers.length || !selectedBadges.length) return;
     const now = new Date().toLocaleString();
-    const newRecords: any[] = [];
+    const newRecords: AwardRecord[] = [];
     selectedUsers.forEach(uid => {
       selectedBadges.forEach(bid => {
         newRecords.push({
-          user: mockUsers.find(u => u.id === uid),
-          badge: badges.find(b => b.id === bid),
+          user: mockUsers.find(u => u.id === uid)!,
+          badge: badges.find(b => b.id === bid)!,
           reason,
           time: now,
         });
